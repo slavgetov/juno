@@ -10,15 +10,15 @@ const DiaryEntry = ({ buttonTitle }: DiaryEntryProps) => {
   const [entry, setEntry] = useState("");
 
   return (
-    <section>
-      <form>
-        <textarea
-          name="diaryEntry"
-          value={entry}
-          onChange={(e) => setEntry(e.target.value)}
-        />
-        <Button className="diaryEntryButton">{buttonTitle}</Button>
-      </form>
+    <section className="diaryEntryContainer">
+      <textarea
+        name="diaryEntry"
+        rows={8}
+        cols={70}
+        value={entry}
+        onChange={(e) => setEntry(e.target.value)}
+      />
+      <Button className="diaryEntryButton">{buttonTitle}</Button>
     </section>
   );
 };
