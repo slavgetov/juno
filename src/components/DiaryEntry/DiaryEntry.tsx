@@ -1,11 +1,24 @@
-import React from "react";
+import { useState } from "react";
 import { Button } from "@mui/base/Button";
 import "./DiaryEntry.css";
 
-const DiaryEntry = () => {
+type DiaryEntryProps = {
+  buttonTitle: string;
+};
+
+const DiaryEntry = ({ buttonTitle }: DiaryEntryProps) => {
+  const [entry, setEntry] = useState("");
+
   return (
     <section>
-      <Button className="diaryEntryButton">Add entry</Button>
+      <form>
+        <textarea
+          name="diaryEntry"
+          value={entry}
+          onChange={(e) => setEntry(e.target.value)}
+        />
+        <Button className="diaryEntryButton">{buttonTitle}</Button>
+      </form>
     </section>
   );
 };
