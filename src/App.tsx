@@ -12,7 +12,10 @@ function App() {
         {/* <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a> */}
-        <DiaryEntry buttonTitle="Add title" />
+        <DiaryEntry
+          buttonTitle="Add title"
+          label="Describe an event from today."
+        />
       </div>
     </>
   );
