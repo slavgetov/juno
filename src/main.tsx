@@ -7,7 +7,10 @@ import App from "./App.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/cool" element={<p>Cool page bro...</p>} />
+      </Routes>
     </BrowserRouter>
   </StrictMode>
 );
