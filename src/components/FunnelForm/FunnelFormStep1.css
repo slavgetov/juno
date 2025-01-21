@@ -1,0 +1,16 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+input {
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.formButton {
+  width: 30%;
+  background-color: #d4c0ff;
+}
