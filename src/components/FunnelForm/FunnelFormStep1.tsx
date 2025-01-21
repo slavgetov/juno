@@ -1,6 +1,8 @@
 import { Button } from "@mui/base";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { FunnelContext } from "../context/funnelContext";
 import "./FunnelFormStep1.css";
 
 type FunnelFormProps1 = {
@@ -21,8 +23,12 @@ const FunnelFormStep1 = ({ buttonTitle }: FunnelFormProps1) => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+  const navigate = useNavigate();
+  const funnel = useContext(FunnelContext);
   const onSubmit = (data: FormData) => {
+    console.log("hey");
     console.log(data);
+    navigate("/form-step2");
   };
   return (
     <section>
@@ -31,18 +37,16 @@ const FunnelFormStep1 = ({ buttonTitle }: FunnelFormProps1) => {
         <input {...register("firstName", { required: true, maxLength: 20 })} />
         <label>Please provide a nickname</label>
         <input {...register("nickname", { required: true, maxLength: 20 })} />
-        <Link to="/form-step2">
-          <Button
-            disabled={errors.firstName || errors.nickname ? true : false}
-            className={
-              errors.firstName || errors.nickname
-                ? "disabledFormButton"
-                : "formButton"
-            }
-          >
-            {buttonTitle}
-          </Button>
-        </Link>
+
+        <Button
+          className={
+            errors.firstName || errors.nickname
+              ? "disabledFormButton"
+              : "formButton"
+          }
+        >
+          {buttonTitle}
+        </Button>
       </form>
     </section>
   );
