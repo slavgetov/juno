@@ -8,9 +8,16 @@ input {
   outline: none;
   border: 1px solid gray;
   border-radius: 10px;
+  padding: 1em;
 }
 
 .formButton {
   width: 30%;
   background-color: #d4c0ff;
+}
+
+.disabledFormButton {
+  width: 30%;
+  background-color: gray;
+  color: #fff;
 }

@@ -16,7 +16,11 @@ interface FormData {
 
 const FunnelFormStep1 = ({ buttonTitle }: FunnelFormProps1) => {
   //so not only should you provide a generic to the hook but also to the props
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
   const onSubmit = (data: FormData) => {
     console.log(data);
   };
@@ -24,11 +28,20 @@ const FunnelFormStep1 = ({ buttonTitle }: FunnelFormProps1) => {
     <section>
       <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
         <label>Please provide a name Juno can use</label>
-        <input {...register("firstName")} />
-        <label>Please provide a nickname optionally</label>
-        <input {...register("nickname")} />
+        <input {...register("firstName", { required: true, maxLength: 20 })} />
+        <label>Please provide a nickname</label>
+        <input {...register("nickname", { required: true, maxLength: 20 })} />
         <Link to="/form-step2">
-          <Button className="formButton">{buttonTitle}</Button>
+          <Button
+            disabled={errors.firstName || errors.nickname ? true : false}
+            className={
+              errors.firstName || errors.nickname
+                ? "disabledFormButton"
+                : "formButton"
+            }
+          >
+            {buttonTitle}
+          </Button>
         </Link>
       </form>
     </section>
