@@ -1,6 +1,12 @@
 import { Button } from "@mui/base";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import {
+  updateFirstName,
+  updateNickname,
+} from "../store/features/user/userSlice";
+
 import "./FunnelFormStep1.css";
 
 type FunnelFormProps1 = {
@@ -22,10 +28,13 @@ const FunnelFormStep1 = ({ buttonTitle }: FunnelFormProps1) => {
     formState: { errors },
   } = useForm<FormData>();
   const navigate = useNavigate();
+  const dispath = useDispatch();
 
   const onSubmit = (data: FormData) => {
     console.log("hey");
-    console.log(data);
+    console.log(data, "this is the data from the form");
+    dispath(updateFirstName(data.firstName));
+    dispath(updateNickname(data.nickname));
     navigate("/form-step2");
   };
   return (
